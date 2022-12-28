@@ -33,20 +33,14 @@ img = icon_image.resize((150,150)) #resize image
 icon = ImageTk.PhotoImage(img) #convert image
 Label(left_frame,image=icon).grid(row=0,column=0,padx=5,pady=5)
 
-#Pendiente, frames entrada y salida.
-
-
 #Tool bar
 
 tool_bar = Frame(left_frame, width=180,height=185,bg='black')
 tool_bar.grid(row=2, column=0,padx=5,pady=5)
-#Label(left_frame,text="Example test").grid(row=1,column=0,padx=5,pady=5)
 
-#Etiquetas que contienen otras cosas.
+Label(tool_bar, text="Herramientas",relief=RAISED,fg='#be2ed6').grid(row=0,column=0,padx=5,pady=5)
 
-Label(tool_bar, text="Herramientas",relief=RAISED).grid(row=0,column=0,padx=5,pady=5)
-
-#Input Texto.
+##########################           Input Texto.         #############################
 #Etiquetas
 input_label = Label(right_frame, text="Entrada", bg='black', fg='white')
 input_label.pack(side='top')
@@ -57,7 +51,7 @@ input_text.place(x=0,y=100,width=200,height=300)
 input_text.config(state='normal',bg='#878787',fg='black')
 input_text.pack(fill='both',expand=1,side='top')
 
-
+############################        Output Texto            ##############################
 #Etiquetas
 output_label = Label(right_frame, text="Salida",bg='black', fg='white')
 output_label.pack(side='top')
@@ -68,21 +62,13 @@ output_text.place(x=0,y=100,width=200,height=300)
 output_text.config(state='disabled',bg='#878787',fg='black')
 output_text.pack(fill='both',expand=1,side='bottom')
 
-
-
-#Creacion de Scrollbar
-
-
-
-
-#output_text.icursor(0)
+############################         Llamadas a funciones   #############################
 
 #Botones
 Button(tool_bar, text='INT SQL',relief='groove', command=lambda: in_line(input_text,output_text)).grid(row=1,column=0,padx=5,pady=5)
 Button(tool_bar, text="STR SQL",relief='groove', command=lambda: convert_str(input_text,output_text)).grid(row=2,column=0,padx=5,pady=5)
 Button(tool_bar, text="Ransack",relief='groove', command=lambda: ransack_search(input_text,output_text)).grid(row=3,column=0,padx=5,pady=5)
-
-
+Button(tool_bar, text="Partnumbers",relief='groove', command=lambda: partnumber(input_text,output_text)).grid(row=3,column=0,padx=5,pady=5)
 
 #Inicio
 root.mainloop()
