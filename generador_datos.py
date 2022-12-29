@@ -1,5 +1,6 @@
 import random
 
+#Crea un fichero con lineas de números aleatorios.
 file_export = open('export.txt','w+')
 
 cont = 0
