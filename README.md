@@ -7,6 +7,7 @@
 
 + Tkinter: pip install tkinter
 + Pillow: pip install pillow
++ TTKThemes: pip install ttkthemes
 
 ### Cambios
 
