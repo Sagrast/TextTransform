@@ -6,16 +6,19 @@ def eliminar_duplicados(cadenas):
     return list(sin_duplicados)
 
 #Convierte una lista de lineas en una linea con cada dato entrecomillado y separado por comas.
-def convert_str(input_widget,output_widget):
+def convert_str(input_widget,output_widget,flag):
     #recoge los datos del widget de entrada y crea un array de un elemento por cada linea.
     text = input_widget.get("1.0", "end")
     lines = text.strip().splitlines()
     #llama a la función eliminar duplicados y recupera una lista de todos los elementos únicos del array.
     lines = eliminar_duplicados(lines)
-    #recorre el array creando una cadena de texto con el formato deseado.   
-    lines = ['\'' + line + '\'' for line in lines]    
-    text = ','.join(lines)   
-    
+    #recorre el array creando una cadena de texto con el formato deseado.
+    if flag == 1:   
+        lines = ['\'' + line + '\'' for line in lines]    
+        text = ','.join(lines)
+    else:
+        lines = ['\"' + line + '\"' for line in lines]    
+        text = ','.join(lines) 
     #Reactiva el widget de salida.
     output_widget.config(state="normal")
     #vacía el contenido que este tenga.
@@ -72,22 +75,7 @@ def partnumber(input_widget,output_widget):
     output_widget.insert('end',text)    
     output_widget.config(state='disabled')
 
-def in_line_mocas(input_widget,output_widget):
-    
-    text = input_widget.get('1.0','end')
-    lines = text.strip().splitlines()
-    
-    lines = eliminar_duplicados(lines)
-    
-    lines = [line  for line in lines]
-    text = "\",\"".join(lines)
-    text = "\""+ text + "\""
-    
-    output_widget.config(state='normal')
-    output_widget.delete("1.0","end")
-    output_widget.insert('end',text)    
-    output_widget.config(state='disabled')
-
+#Borrado de ambos paneles
 def reset(input_widget,output_widget):
     
     input_widget.delete("1.0","end")
@@ -95,3 +83,4 @@ def reset(input_widget,output_widget):
     output_widget.config(state='normal')
     output_widget.delete("1.0","end")    
     output_widget.config(state='disabled')
+

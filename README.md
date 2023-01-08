@@ -16,5 +16,8 @@ v.02
 + Rediseño completo de la interfaz
 + Añadidas barras de Scroll en los widgets de texto.
 
-TODO
-+ Modo claro y modo oscuro.
+v.03
+
++ Adaptado para tkthemes
++ Añadida la posibilidad de alternar entre tema oscuro y claro.
++ Revisadas funciones de manejo de datos.
