@@ -15,7 +15,7 @@ def theme(value):
 #Root
 root = tttk.ThemedTk()
 root.set_theme('black')
-root.title('Utils V2')
+root.title('Utilidades')
 root.geometry('+500+80')
 root.resizable(width=False, height=False)
 root.configure(background='black')
@@ -72,7 +72,7 @@ inline_sql = ttk.Button(tool_bar,text='Inline Integer',style='botones.TButton',c
 inline_str = ttk.Button(tool_bar,text='Inline String(\')',style='botones.TButton', command=lambda: convert_str(input_text_box,output_text_box,1))
 inline_str_2 = ttk.Button(tool_bar,text='Inline String(\")',style='botones.TButton', command=lambda: convert_str(input_text_box,output_text_box,2))
 ransack_or = ttk.Button(tool_bar,width=5,text='Ransack',style='botones.TButton', command=lambda: ransack_search(input_text_box,output_text_box))
-
+remove_duplicates_button = ttk.Button(tool_bar,text='Eliminar duplicados',style='botones.TButton', command= lambda: remove_duplicates(input_text_box, output_text_box))
 
 
 #Posicionamiento de botones.
@@ -82,6 +82,7 @@ inline_sql.grid(column=0, row=2,sticky=(W,E))
 inline_str.grid(column=0, row=3,sticky=(W,E))
 inline_str_2.grid(column=0, row=4,sticky=(W,E))
 ransack_or.grid(column=0, row=5,sticky=(W,E))
+remove_duplicates_button.grid(column=0, row=6,sticky=(W,E))
 
 
 #Creación de cajas de texto.

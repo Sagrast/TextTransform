@@ -21,3 +21,6 @@ v.03
 + Adaptado para tkthemes
 + Añadida la posibilidad de alternar entre tema oscuro y claro.
 + Revisadas funciones de manejo de datos.
+
+v.04
++ Añadida función de eliminar duplicados
