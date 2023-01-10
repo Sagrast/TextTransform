@@ -24,3 +24,5 @@ v.03
 
 v.04
 + Añadida función de eliminar duplicados
++ Añadida función de crear cadenas tipo "AND Clave Like '%ValorInput%'".
++ Cambios en la interfaz.

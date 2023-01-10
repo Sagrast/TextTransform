@@ -60,16 +60,25 @@ def ransack_search(input_widget,output_widget):
     output_widget.config(state='disabled')
     
     
-def partnumber(input_widget,output_widget):
+def process_string(input_widget,output_widget,chain,flag):
     
     text = input_widget.get('1.0','end')
     lines = text.strip().splitlines()
     
+    chain = chain.strip()
+    
     lines = eliminar_duplicados(lines)
-    
-    lines = [line for line in lines]
-    text = '%\' OR PARTNUMBER LIKE \'%'.join(lines)
-    
+    if flag == 'OR':        
+        text = ''        
+        for line in lines:
+            text += ' OR ' + chain + f' LIKE \'%{line}%\''
+    else:
+        text = ''        
+        for line in lines:
+            text += ' AND ' + chain + f' LIKE \'%{line}%\''
+             
+        
+        
     output_widget.config(state='normal')
     output_widget.delete("1.0","end")
     output_widget.insert('end',text)    

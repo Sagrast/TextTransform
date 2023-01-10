@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import scrolledtext
+from tkinter import StringVar
 from tkinter.ttk import *
 from DAO.dao import *
 from PIL import Image, ImageTk
@@ -19,8 +20,7 @@ root.title('Utilidades')
 root.geometry('+500+80')
 root.resizable(width=False, height=False)
 root.configure(background='black')
-root.columnconfigure(0,weight=1)
-root.rowconfigure(0,weight=1)
+
 
 #icono ventana
 icon_image = Image.open('./Assets/sunset.jpg')
@@ -44,11 +44,13 @@ mainframe_style.configure('mainframe.TFrame',
 mainframe = ttk.Frame(root,style='mainframe.TFrame')
 mainframe.grid(column=0, row=0, sticky=(W,N,E,S))
 
+
 #Estilos de botones
 estilos_botones = ttk.Style()
 estilos_botones.configure('botones.TButton', 
                           font=("TkFixedFont", 12),
-                          relief='groove',                                                     
+                          relief='groove',
+                          anchor='center'                                                     
                           )
 estilos_botones.map('botones.TButton',background=[('active', '#050236')],foreground=[('active','blue')])
 
@@ -57,33 +59,45 @@ estilos_botones = ttk.Style()
 estilos_botones.configure('reset.TButton',
                           font="Ubuntu 12",
                           relief='sunken',                           
-                          foreground="black")
+                          foreground="black",
+                          anchor='center')
 estilos_botones.map('reset.TButton',background=[('active', '#050236')],foreground=[('active','red')])
 
 #Creación de botones de herramientas
-tool_bar = Label(mainframe)
-tool_bar.configure(anchor='center')
-tool_bar.grid(column=0,row=0,rowspan=8,sticky=(W,N,E,S))
+tool_bar = ttk.Label(mainframe)
+tool_bar.grid(column=0,row=0)
+
+
 
 avatar = ttk.Label(tool_bar, image=icon)
 
-reset_button = ttk.Button(tool_bar,text="Reset",style='reset.TButton', command=lambda: reset(input_text_box,output_text_box))
-inline_sql = ttk.Button(tool_bar,text='Inline Integer',style='botones.TButton',command=lambda: in_line(input_text_box,output_text_box))
-inline_str = ttk.Button(tool_bar,text='Inline String(\')',style='botones.TButton', command=lambda: convert_str(input_text_box,output_text_box,1))
-inline_str_2 = ttk.Button(tool_bar,text='Inline String(\")',style='botones.TButton', command=lambda: convert_str(input_text_box,output_text_box,2))
-ransack_or = ttk.Button(tool_bar,width=5,text='Ransack',style='botones.TButton', command=lambda: ransack_search(input_text_box,output_text_box))
+reset_button = ttk.Button(tool_bar,text="RESET",style='reset.TButton', command=lambda: reset(input_text_box,output_text_box))
+inline_sql = ttk.Button(tool_bar,width=15,text='Inline Integer',style='botones.TButton',command=lambda: in_line(input_text_box,output_text_box))
+inline_str = ttk.Button(tool_bar,width=15,text='Inline String(\')',style='botones.TButton', command=lambda: convert_str(input_text_box,output_text_box,1))
+inline_str_2 = ttk.Button(tool_bar,width=15,text='Inline String(\")',style='botones.TButton', command=lambda: convert_str(input_text_box,output_text_box,2))
+ransack_or = ttk.Button(tool_bar,width=15,text='Ransack',style='botones.TButton', command=lambda: ransack_search(input_text_box,output_text_box))
 remove_duplicates_button = ttk.Button(tool_bar,text='Eliminar duplicados',style='botones.TButton', command= lambda: remove_duplicates(input_text_box, output_text_box))
+#Cadena para procesar en un AND o un OR
+string_to_process_label = ttk.Label(tool_bar,text='Cadena a procesar',anchor='center')
+string_to_process = ttk.Entry(tool_bar,width=10)
+and_button = ttk.Button(tool_bar,width=15,text='AND',style='botones.TButton',command=lambda: process_string(input_text_box, output_text_box,string_to_process.get(),'AND'))
+or_button = ttk.Button(tool_bar,width=15,text='OR',style='botones.TButton',command=lambda: process_string(input_text_box, output_text_box,string_to_process.get(),'OR'))
+
 
 
 #Posicionamiento de botones.
 avatar.grid(column=0,row=0,sticky=(W,N,E,S))
 reset_button.grid(column=0,row=1,sticky=(W,E))
-inline_sql.grid(column=0, row=2,sticky=(W,E))
-inline_str.grid(column=0, row=3,sticky=(W,E))
-inline_str_2.grid(column=0, row=4,sticky=(W,E))
-ransack_or.grid(column=0, row=5,sticky=(W,E))
-remove_duplicates_button.grid(column=0, row=6,sticky=(W,E))
+inline_sql.grid(column=0, row=2,sticky=(W))
+ransack_or.grid(column=0, row=2,sticky=(E))
+inline_str.grid(column=0, row=3,sticky=(W))
+inline_str_2.grid(column=0, row=3,sticky=(E))
 
+remove_duplicates_button.grid(column=0, row=5,sticky=(W,E))
+string_to_process_label.grid(column=0, row=6,sticky=(W,E))
+string_to_process.grid(column=0,row=7,sticky=(W,E))
+and_button.grid(column=0, row=8,sticky=(W))
+or_button.grid(column=0, row=8,sticky=(E))
 
 #Creación de cajas de texto.
 #Input
