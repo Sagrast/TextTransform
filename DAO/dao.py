@@ -42,24 +42,9 @@ def in_line(input_widget,output_widget):
     output_widget.config(state='normal')
     output_widget.delete("1.0","end")
     output_widget.insert('end',text)    
-    output_widget.config(state='disabled')
-
-#Recibe una lista de lineas y devuelve una cadena de texto con las lineas separadas por ' OR '    
-def ransack_search(input_widget,output_widget):
+    output_widget.config(state='disabled')   
     
-    text = input_widget.get('1.0','end')
-    lines = text.strip().splitlines()
-    
-    lines = eliminar_duplicados(lines)
-    lines = [line for line in lines]
-    text = ' OR '.join(lines)
-    
-    output_widget.config(state='normal')
-    output_widget.delete("1.0","end")
-    output_widget.insert('end',text)    
-    output_widget.config(state='disabled')
-    
-    
+#Recibe una lista de lineas, una cadena que indica el string a concatenar y un flag que decide la estructura final a devolver.
 def process_string(input_widget,output_widget,chain,flag):
     
     text = input_widget.get('1.0','end')
@@ -72,11 +57,13 @@ def process_string(input_widget,output_widget,chain,flag):
         text = ''        
         for line in lines:
             text += ' OR ' + chain + f' LIKE \'%{line}%\''
-    else:
+    elif flag == 'AND':
         text = ''        
         for line in lines:
             text += ' AND ' + chain + f' LIKE \'%{line}%\''
-             
+    else:        
+        lines = [line for line in lines]
+        text = ' OR '.join(lines)         
         
         
     output_widget.config(state='normal')
@@ -93,6 +80,7 @@ def reset(input_widget,output_widget):
     output_widget.delete("1.0","end")    
     output_widget.config(state='disabled')
     
+#Devuelve una lista igual a la original eliminando los duplicados.
 def remove_duplicates(input_widget,output_widget):
     
     text = input_widget.get('1.0','end')

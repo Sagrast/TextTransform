@@ -75,7 +75,7 @@ reset_button = ttk.Button(tool_bar,text="RESET",style='reset.TButton', command=l
 inline_sql = ttk.Button(tool_bar,width=15,text='Inline Integer',style='botones.TButton',command=lambda: in_line(input_text_box,output_text_box))
 inline_str = ttk.Button(tool_bar,width=15,text='Inline String(\')',style='botones.TButton', command=lambda: convert_str(input_text_box,output_text_box,1))
 inline_str_2 = ttk.Button(tool_bar,width=15,text='Inline String(\")',style='botones.TButton', command=lambda: convert_str(input_text_box,output_text_box,2))
-ransack_or = ttk.Button(tool_bar,width=15,text='Ransack',style='botones.TButton', command=lambda: ransack_search(input_text_box,output_text_box))
+ransack_or = ttk.Button(tool_bar,width=15,text='Ransack',style='botones.TButton', command=lambda: process_string(input_text_box, output_text_box,'',''))
 remove_duplicates_button = ttk.Button(tool_bar,text='Eliminar duplicados',style='botones.TButton', command= lambda: remove_duplicates(input_text_box, output_text_box))
 #Cadena para procesar en un AND o un OR
 string_to_process_label = ttk.Label(tool_bar,text='Cadena a procesar',anchor='center')
