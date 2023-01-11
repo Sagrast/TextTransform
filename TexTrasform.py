@@ -12,6 +12,8 @@ def theme(value):
         root.set_theme('black')
     else:
         root.set_theme('blue')
+
+
         
 #Root
 root = tttk.ThemedTk()
@@ -57,7 +59,7 @@ estilos_botones.map('botones.TButton',background=[('active', '#050236')],foregro
 #Estilos reset.
 estilos_botones = ttk.Style()
 estilos_botones.configure('reset.TButton',
-                          font="Ubuntu 12",
+                          font=("Ubuntu", 12),
                           relief='sunken',                           
                           foreground="black",
                           anchor='center')
@@ -99,6 +101,7 @@ string_to_process.grid(column=0,row=7,sticky=(W,E))
 and_button.grid(column=0, row=8,sticky=(W))
 or_button.grid(column=0, row=8,sticky=(E))
 
+
 #Creación de cajas de texto.
 #Input
 input_name_box = Label(mainframe)
@@ -134,17 +137,31 @@ output_name_box.grid(column=1,row=10,columnspan=4,sticky=(W,N,E,S),ipady=10)
 output_text_box.grid(column=1,row=5,columnspan=4,rowspan=4,sticky=(W,N,E,S))
 
 
+frames = [PhotoImage(file='./Assets/mini_renegade.gif', format='gif -index %i'%(i)) for i in range(7)] 
+ 
+def update(ind):
+
+    frame = frames[ind]
+    ind += 1
+    if ind == 7:
+        ind = 0
+    renegade.configure(image=frame)
+    tool_bar.after(100, update, ind)
+tool_bar.after(0, update, 0)
+
 themes_bar = Label(mainframe)
 themes_bar.configure(anchor='center')
 themes_bar.grid(column=0,row=10,sticky=(N,E))
+renegade = Label(themes_bar, image=frames[0])
 #Temas
+
 dark_theme = ttk.Button(themes_bar,text="Tema Oscuro", command=lambda: theme('dark'))
 light_theme = ttk.Button(themes_bar,text="Tema Claro", command=lambda: theme('light'))
 
 #Posicionamiento
-dark_theme.grid(column=0, row=0,sticky=(W,E))
-light_theme.grid(column=1, row=0,sticky=(W,E))
-
+dark_theme.grid(column=0, row=0,sticky=(W))
+light_theme.grid(column=1, row=0,sticky=(E))
+renegade.grid(column=3, row=0,sticky=(W))
 
 for child in mainframe.winfo_children():
     child.grid_configure(padx=1,pady=1)
