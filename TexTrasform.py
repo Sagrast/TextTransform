@@ -30,8 +30,8 @@ icon_window = ImageTk.PhotoImage(icon_image)
 root.iconphoto(True,icon_window)
 
 #img
-#img = icon_image.resize((150,150)) #resize image
-icon = ImageTk.PhotoImage(icon_image) #convert image
+img = icon_image.resize((250,250)) #resize image
+icon = ImageTk.PhotoImage(img) #convert image
 
 
 
@@ -50,7 +50,7 @@ mainframe.grid(column=0, row=0, sticky=(W,N,E,S))
 #Estilos de botones
 estilos_botones = ttk.Style()
 estilos_botones.configure('botones.TButton', 
-                          font=("TkFixedFont", 12),
+                          font=("TkFixedFont", 9),
                           relief='groove',
                           anchor='center'                                                     
                           )
@@ -74,16 +74,16 @@ tool_bar.grid(column=0,row=0)
 avatar = ttk.Label(tool_bar, image=icon)
 
 reset_button = ttk.Button(tool_bar,text="RESET",style='reset.TButton', command=lambda: reset(input_text_box,output_text_box))
-inline_sql = ttk.Button(tool_bar,width=15,text='Inline Integer',style='botones.TButton',command=lambda: in_line(input_text_box,output_text_box))
-inline_str = ttk.Button(tool_bar,width=15,text='Inline String(\')',style='botones.TButton', command=lambda: convert_str(input_text_box,output_text_box,1))
-inline_str_2 = ttk.Button(tool_bar,width=15,text='Inline String(\")',style='botones.TButton', command=lambda: convert_str(input_text_box,output_text_box,2))
-ransack_or = ttk.Button(tool_bar,width=15,text='Ransack',style='botones.TButton', command=lambda: process_string(input_text_box, output_text_box,'',''))
+inline_sql = ttk.Button(tool_bar,width=12,text='Inline Integer',style='botones.TButton',command=lambda: in_line(input_text_box,output_text_box))
+inline_str = ttk.Button(tool_bar,width=12,text='Inline String(\')',style='botones.TButton', command=lambda: convert_str(input_text_box,output_text_box,1))
+inline_str_2 = ttk.Button(tool_bar,width=12,text='Inline String(\")',style='botones.TButton', command=lambda: convert_str(input_text_box,output_text_box,2))
+ransack_or = ttk.Button(tool_bar,width=12,text='Ransack',style='botones.TButton', command=lambda: process_string(input_text_box, output_text_box,'',''))
 remove_duplicates_button = ttk.Button(tool_bar,text='Eliminar duplicados',style='botones.TButton', command= lambda: remove_duplicates(input_text_box, output_text_box))
 #Cadena para procesar en un AND o un OR
 string_to_process_label = ttk.Label(tool_bar,text='Cadena a procesar',anchor='center')
 string_to_process = ttk.Entry(tool_bar,width=10)
-and_button = ttk.Button(tool_bar,width=15,text='AND',style='botones.TButton',command=lambda: process_string(input_text_box, output_text_box,string_to_process.get(),'AND'))
-or_button = ttk.Button(tool_bar,width=15,text='OR',style='botones.TButton',command=lambda: process_string(input_text_box, output_text_box,string_to_process.get(),'OR'))
+and_button = ttk.Button(tool_bar,width=12,text='AND',style='botones.TButton',command=lambda: process_string(input_text_box, output_text_box,string_to_process.get(),'AND'))
+or_button = ttk.Button(tool_bar,width=12,text='OR',style='botones.TButton',command=lambda: process_string(input_text_box, output_text_box,string_to_process.get(),'OR'))
 
 
 
