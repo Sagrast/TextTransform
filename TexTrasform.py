@@ -12,6 +12,23 @@ def theme(value):
         root.set_theme('black')
     else:
         root.set_theme('blue')
+        #Estilos de botones
+        estilos_botones = ttk.Style()
+        estilos_botones.configure('botones.TButton', 
+                          font=("TkFixedFont", 8),
+                          relief='groove',
+                          anchor='center'                                                     
+                          )
+        estilos_botones.map('botones.TButton',background=[('active', '#050236')],foreground=[('active','blue')])
+
+        #Estilos reset.
+        estilos_botones = ttk.Style()
+        estilos_botones.configure('reset.TButton',
+                          font=("Ubuntu", 12),
+                          relief='sunken',                           
+                          foreground="black",
+                          anchor='center')
+        estilos_botones.map('reset.TButton',background=[('active', '#050236')],foreground=[('active','red')])
 
 
         
@@ -54,7 +71,7 @@ estilos_botones.configure('botones.TButton',
                           relief='groove',
                           anchor='center'                                                     
                           )
-estilos_botones.map('botones.TButton',background=[('active', '#050236')],foreground=[('active','blue')])
+estilos_botones.map('botones.TButton',background=[('active', 'grey')],foreground=[('active','blue')])
 
 #Estilos reset.
 estilos_botones = ttk.Style()
