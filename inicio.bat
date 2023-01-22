@@ -1,2 +1,2 @@
 @echo off
-python TexTransform.py
+python start.py
