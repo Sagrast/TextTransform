@@ -134,48 +134,51 @@ union_button.grid(column=0, row=10,sticky=(E))
 #Creación de cajas de texto.
 #Input
 input_name_box = Label(inputs_bar)
-input_name_box.configure(#background="#00044A",
+input_name_box.config(#background="#00044A",
                          #foreground="white",
                          text='Entrada Principal',
                          anchor="center",
                          font=("Arial", 15),
                          )
 input_text_box = scrolledtext.ScrolledText(inputs_bar)
-input_text_box.configure(#background="#00044A",
+input_text_box.config(#background="#00044A",
                          #foreground="black",
-                         state="normal")
+                         state="normal",
+                         width=50)
 #input2
 input_name_box2 = Label(inputs_bar)
-input_name_box2.configure(#background="#00044A",
+input_name_box2.config(#background="#00044A",
                          #foreground="white",
                          text='Entrada Secundaria',
                          anchor="center",
                          font=("Arial", 15),
                          )
 input_text_box2 = scrolledtext.ScrolledText(inputs_bar)
-input_text_box2.configure(#background="#00044A",
+input_text_box2.config(#background="#00044A",
                          #foreground="black",
-                         state="normal")
+                         state="normal",
+                         width=50)
 #output
 output_name_box = Label(mainframe)
-output_name_box.configure(#background="#00044A",
+output_name_box.config(#background="#00044A",
                           #foreground="white",
                           text='Salida',
                           anchor="center",
-                          font=('Arial', 15)
-                          )
+                          font=('Arial', 15)                          )
 output_text_box = scrolledtext.ScrolledText(mainframe)
-output_text_box.configure(#background="#00044A",
+output_text_box.config(#background="#00044A",
                           #foreground="black",
-                          state="disabled")
+                          state="disabled",
+                          width=100)
+                          
 
 
 
 #posicionamiento de cajas de texto.
-input_text_box.grid(column=1,row=0,columnspan=2,rowspan=2,sticky=(W,N,E,S))
-input_name_box.grid(column=1,row=4,columnspan=2,sticky=(W,N,E,S),ipady=5)
-input_text_box2.grid(column=6,row=0,columnspan=2,rowspan=2,sticky=(N,S))
-input_name_box2.grid(column=6,row=4,columnspan=2,sticky=(W,N,E,S),ipady=5)
+input_text_box.grid(column=1,row=0,columnspan=1,sticky=(N,S))
+input_name_box.grid(column=1,row=4,columnspan=1,sticky=(W,N,E,S),ipady=5)
+input_text_box2.grid(column=6,row=0,columnspan=1,sticky=(N,S))
+input_name_box2.grid(column=6,row=4,columnspan=1,sticky=(W,N,E,S),ipady=5)
 
 #Outputs
 output_name_box.grid(column=1,row=10,columnspan=2,sticky=(W,N,E,S),ipady=5)
