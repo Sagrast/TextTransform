@@ -26,3 +26,7 @@ v.04
 + Añadida función de eliminar duplicados
 + Añadida función de crear cadenas tipo "AND Clave Like '%ValorInput%'".
 + Cambios en la interfaz.
+
+v.05
++ Añadidas funciones de manejo de SET
++ Revisión de funciones, eliminado código duplicado y declaraciones de variables innecesarias.

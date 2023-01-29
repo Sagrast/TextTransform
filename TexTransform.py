@@ -86,21 +86,27 @@ estilos_botones.map('reset.TButton',background=[('active', '#050236')],foregroun
 tool_bar = ttk.Label(mainframe)
 tool_bar.grid(column=0,row=0)
 
+inputs_bar = ttk.Label(mainframe)
+inputs_bar.grid(column=2,row=0)
 
 
 avatar = ttk.Label(tool_bar, image=icon)
 
-reset_button = ttk.Button(tool_bar,text="RESET",style='reset.TButton', command=lambda: reset(input_text_box,output_text_box))
+reset_button = ttk.Button(tool_bar,text="RESET",style='reset.TButton', command=lambda: reset(input_text_box,input_text_box2,output_text_box))
 inline_sql = ttk.Button(tool_bar,width=12,text='Inline Integer',style='botones.TButton',command=lambda: in_line(input_text_box,output_text_box))
 inline_str = ttk.Button(tool_bar,width=12,text='Inline String(\')',style='botones.TButton', command=lambda: convert_str(input_text_box,output_text_box,1))
 inline_str_2 = ttk.Button(tool_bar,width=12,text='Inline String(\")',style='botones.TButton', command=lambda: convert_str(input_text_box,output_text_box,2))
 ransack_or = ttk.Button(tool_bar,width=12,text='Ransack',style='botones.TButton', command=lambda: process_string(input_text_box, output_text_box,'',''))
-remove_duplicates_button = ttk.Button(tool_bar,text='Eliminar duplicados',style='botones.TButton', command= lambda: remove_duplicates(input_text_box, output_text_box))
+remove_duplicates_button = ttk.Button(tool_bar,text='Eliminar duplicados',style='botones.TButton', command= lambda: eliminar_duplicados(input_text_box, output_text_box))
 #Cadena para procesar en un AND o un OR
 string_to_process_label = ttk.Label(tool_bar,text='Cadena a procesar',anchor='center')
 string_to_process = ttk.Entry(tool_bar,width=10)
 and_button = ttk.Button(tool_bar,width=12,text='AND',style='botones.TButton',command=lambda: process_string(input_text_box, output_text_box,string_to_process.get(),'AND'))
 or_button = ttk.Button(tool_bar,width=12,text='OR',style='botones.TButton',command=lambda: process_string(input_text_box, output_text_box,string_to_process.get(),'OR'))
+#Nimbleset
+nimbleset_label = ttk.Label(tool_bar,text='Operaciones SET',anchor='center')
+xor_button = ttk.Button(tool_bar,width=12,text='XOR',style='botones.TButton',command=lambda: xor_function(input_text_box,input_text_box2,output_text_box,'XOR'))
+union_button = ttk.Button(tool_bar,width=12,text='UNION',style='botones.TButton',command=lambda: xor_function(input_text_box,input_text_box2,output_text_box,'UNION'))
 
 
 
@@ -111,25 +117,43 @@ inline_sql.grid(column=0, row=2,sticky=(W))
 ransack_or.grid(column=0, row=2,sticky=(E))
 inline_str.grid(column=0, row=3,sticky=(W))
 inline_str_2.grid(column=0, row=3,sticky=(E))
-
+#AND,OR 
 remove_duplicates_button.grid(column=0, row=5,sticky=(W,E))
 string_to_process_label.grid(column=0, row=6,sticky=(W,E))
 string_to_process.grid(column=0,row=7,sticky=(W,E))
 and_button.grid(column=0, row=8,sticky=(W))
 or_button.grid(column=0, row=8,sticky=(E))
+#NimbleSet
+nimbleset_label.grid(column=0,row=9,sticky=(W,E))
+xor_button.grid(column=0, row=10,sticky=(W))
+union_button.grid(column=0, row=10,sticky=(E))
+
+#Nimbleset
 
 
 #Creación de cajas de texto.
 #Input
-input_name_box = Label(mainframe)
+input_name_box = Label(inputs_bar)
 input_name_box.configure(#background="#00044A",
                          #foreground="white",
-                         text='Entrada',
+                         text='Entrada Principal',
                          anchor="center",
                          font=("Arial", 15),
                          )
-input_text_box = scrolledtext.ScrolledText(mainframe)
+input_text_box = scrolledtext.ScrolledText(inputs_bar)
 input_text_box.configure(#background="#00044A",
+                         #foreground="black",
+                         state="normal")
+#input2
+input_name_box2 = Label(inputs_bar)
+input_name_box2.configure(#background="#00044A",
+                         #foreground="white",
+                         text='Entrada Secundaria',
+                         anchor="center",
+                         font=("Arial", 15),
+                         )
+input_text_box2 = scrolledtext.ScrolledText(inputs_bar)
+input_text_box2.configure(#background="#00044A",
                          #foreground="black",
                          state="normal")
 #output
@@ -148,10 +172,14 @@ output_text_box.configure(#background="#00044A",
 
 
 #posicionamiento de cajas de texto.
-input_text_box.grid(column=1,row=0,columnspan=4,rowspan=4,sticky=(W,N,E,S))
-input_name_box.grid(column=1,row=4,columnspan=4,sticky=(W,N,E,S),ipady=10)
-output_name_box.grid(column=1,row=10,columnspan=4,sticky=(W,N,E,S),ipady=10)
-output_text_box.grid(column=1,row=5,columnspan=4,rowspan=4,sticky=(W,N,E,S))
+input_text_box.grid(column=1,row=0,columnspan=2,rowspan=2,sticky=(W,N,E,S))
+input_name_box.grid(column=1,row=4,columnspan=2,sticky=(W,N,E,S),ipady=5)
+input_text_box2.grid(column=6,row=0,columnspan=2,rowspan=2,sticky=(N,S))
+input_name_box2.grid(column=6,row=4,columnspan=2,sticky=(W,N,E,S),ipady=5)
+
+#Outputs
+output_name_box.grid(column=1,row=10,columnspan=2,sticky=(W,N,E,S),ipady=5)
+output_text_box.grid(column=1,row=5,columnspan=2,rowspan=4,sticky=(W,N,E,S))
 
 
 frames = [PhotoImage(file='./Assets/mini_renegade.gif', format='gif -index %i'%(i)) for i in range(7)] 
