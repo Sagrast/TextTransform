@@ -17,12 +17,10 @@ def eliminar_duplicados(input_widget,output_widget):
         lines = sorted(lines)
         text = list(lines)
         
-        text = '\n'.join(lines)
-    
-        output_widget.config(state='normal')
-        output_widget.delete("1.0","end")
-        output_widget.insert('end',text)    
-        output_widget.config(state='disabled')
+        text = '\n'.join(lines)    
+          
+        show_results(output_widget,text)
+ 
         
     else:
         # Convertir la lista a un conjunto para eliminar los elementos duplicados            
@@ -44,16 +42,11 @@ def convert_str(input_widget,output_widget,flag):
         text = '(' + text + ')'
     else:
         lines = ['\"' + line + '\"' for line in lines]    
-        text = ','.join(lines)         
-    #Reactiva el widget de salida.
-    output_widget.config(state="normal")
-    #vacía el contenido que este tenga.
-    output_widget.delete("1.0","end")
-    #Inserta el texto generado
-    output_widget.insert("end", text)
-    #Vuelve a deshabilitar el widgt de salida para evitar modificaciones accidentales        
-    output_widget.config(state="disabled")
-    
+        text = ','.join(lines)   
+      
+    show_results(output_widget,text)
+        
+ 
 
 #Recibe una lista de lineas y devuelve una cadena de texto con las lineas separadas por ','
 def in_line(input_widget,output_widget):  
@@ -65,10 +58,8 @@ def in_line(input_widget,output_widget):
     text = ','.join(lines)
     text = '(' + text + ')'
     
-    output_widget.config(state='normal')
-    output_widget.delete("1.0","end")
-    output_widget.insert('end',text)    
-    output_widget.config(state='disabled')   
+    show_results(output_widget,text)
+ 
     
 #Recibe una lista de lineas, una cadena que indica el string a concatenar y un flag que decide la estructura final a devolver.
 def process_string(input_widget,output_widget,chain,flag):    
@@ -104,12 +95,9 @@ def process_string(input_widget,output_widget,chain,flag):
         lines = [line for line in lines]
         text = ' OR '.join(lines)         
         text = '(' + text + ')'
-        
-        
-    output_widget.config(state='normal')
-    output_widget.delete("1.0","end")
-    output_widget.insert('end',text)    
-    output_widget.config(state='disabled')
+    
+    show_results(output_widget,text)
+ 
 
 #Borrado de ambos paneles
 def reset(input_widget,input_widget2,output_widget):
@@ -145,9 +133,18 @@ def xor_function(input_widget,input_widget2,output_widget,flag):
             result = list(result)
             text = '\n'.join(result)
     else:
-        text = 'Debes de cubrir ambos campos de entrada para usar esta función.'
+        text = 'Debes de cubrir ambos campos de entrada para usar esta función.'  
+  
+    show_results(output_widget,text)
+ 
     
-    output_widget.config(state='normal')
+def show_results(output_widget,text):
+   #Reactiva el widget de salida.
+    output_widget.config(state="normal")
+    #vacía el contenido que este tenga.
     output_widget.delete("1.0","end")
-    output_widget.insert('end',text)
-    output_widget.config(state='disabled')
+    #Inserta el texto generado
+    output_widget.insert("end", text)
+    #Vuelve a deshabilitar el widgt de salida para evitar modificaciones accidentales        
+    output_widget.config(state="disabled")
+    
