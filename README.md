@@ -30,3 +30,8 @@ v.04
 v.05
 + Añadidas funciones de manejo de SET
 + Revisión de funciones, eliminado código duplicado y declaraciones de variables innecesarias.
+
+v.07
+
++ Reescritura del código usando clases en lugar de programación estructurada. 
++ Cambios esteticos menores.

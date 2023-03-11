@@ -1,3 +1,3 @@
 import subprocess
 
-subprocess.Popen("python TexTransform.py",shell=True)
+subprocess.Popen("python app.py",shell=True)
