@@ -13,7 +13,7 @@ class Toolbar(ttk.Frame):
         inputs_bar = ttk.Label(self)
         inputs_bar.grid(column=2, row=0, rowspan=50)
         # img
-        img = icon_image.resize((250, 250))  # resize image
+        img = icon_image.resize((260, 260))  # resize image
         self.icon = ImageTk.PhotoImage(img)  # convert image
 
         avatar = ttk.Label(self, image=self.icon)
@@ -51,22 +51,22 @@ class Toolbar(ttk.Frame):
             child.grid_configure(ipadx=5, ipady=5)
 
         # Posicionamiento de botones.
-        avatar.grid(column=0, row=0, sticky=(W, N, E, S))
-        reset_button.grid(column=0, row=1, sticky=(W, E))
-        inline_sql.grid(column=0, row=2, sticky=(W))
-        ransack_or.grid(column=0, row=2, sticky=(E))
-        inline_str.grid(column=0, row=3, sticky=(W))
-        inline_str_2.grid(column=0, row=3, sticky=(E))
+        avatar.grid(column=0, row=0, sticky=(W, N, E, S), ipadx=0, ipady=0, padx=0,pady=0)
+        reset_button.grid(column=0, row=1, sticky=(W, E),pady=0)
+        inline_sql.grid(column=0, row=2, sticky=(W),pady=0)
+        ransack_or.grid(column=0, row=2, sticky=(E),pady=0)
+        inline_str.grid(column=0, row=3, sticky=(W),pady=0)
+        inline_str_2.grid(column=0, row=3, sticky=(E),pady=0)
         # AND,OR
-        remove_duplicates_button.grid(column=0, row=5, sticky=(W, E))
-        string_to_process_label.grid(column=0, row=6, sticky=(W, E))
-        string_to_process.grid(column=0, row=7, sticky=(W, E))
-        and_button.grid(column=0, row=8, sticky=(W))
-        or_button.grid(column=0, row=8, sticky=(E))
+        remove_duplicates_button.grid(column=0, row=5, sticky=(W, E),pady=0)
+        string_to_process_label.grid(column=0, row=6, sticky=(W, E),pady=0)
+        string_to_process.grid(column=0, row=7, sticky=(W, E),pady=0)
+        and_button.grid(column=0, row=8, sticky=(W),pady=0)
+        or_button.grid(column=0, row=8, sticky=(E),pady=0)
         # NimbleSet
-        nimbleset_label.grid(column=0, row=9, sticky=(W, E))
-        xor_button.grid(column=0, row=10, sticky=(W))
-        union_button.grid(column=0, row=10, sticky=(E))
+        nimbleset_label.grid(column=0, row=9, sticky=(W, E),pady=0)
+        xor_button.grid(column=0, row=10, sticky=(W),pady=0)
+        union_button.grid(column=0, row=10, sticky=(E),pady=0)
 
     # Creación de cajas de texto.
         # Input
@@ -121,6 +121,9 @@ class Toolbar(ttk.Frame):
                              sticky=(W, N, E, S), ipady=5)
         output_text_box.grid(column=0, row=5, columnspan=2,
                              rowspan=4, sticky=(W, N, E, S))
+        
+        
+        ########################## METODOS DE CLASE #########################
 
         # Devuelve una lista igual a la original eliminando los duplicados.
         def eliminar_duplicados(input_widget, output_widget):
