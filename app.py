@@ -43,13 +43,13 @@ class TextTransform(tttk.ThemedTk):
                             ('active', 'grey')], foreground=[('active', 'blue')])
 
         # Estilos reset.
-        estilos_botones = ttk.Style()
-        estilos_botones.configure('reset.TButton',
+        estilo_reset = ttk.Style()
+        estilo_reset.configure('reset.TButton',
                                   font=("Ubuntu", 12),
                                   relief='sunken',
                                   foreground="black",
                                   anchor='center')
-        estilos_botones.map('reset.TButton', background=[
+        estilo_reset.map('reset.TButton', background=[
                             ('active', '#050236')], foreground=[('active', 'red')])
 
         # Estilos paneles
@@ -73,6 +73,7 @@ class TextTransform(tttk.ThemedTk):
         themes_bar.configure(anchor='center')
         themes_bar.grid(column=0, row=10, sticky=(N, E))
         renegade = Label(themes_bar, image=frames[0])
+        renegade.grid(column=3, row=0, sticky=(W))
         themes_bar.after(0, update, 0)
         # Temas
 
@@ -84,7 +85,7 @@ class TextTransform(tttk.ThemedTk):
         # Posicionamiento
         dark_theme.grid(column=0, row=0, sticky=(W))
         light_theme.grid(column=1, row=0, sticky=(E))
-        renegade.grid(column=3, row=0, sticky=(W))
+        
         
         for child in mainframe.winfo_children():
             child.grid_configure(padx=1, pady=1)            
